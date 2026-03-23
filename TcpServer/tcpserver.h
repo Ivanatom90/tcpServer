@@ -64,16 +64,11 @@ private:
     void startServer(int port);
     void sendStartStop2Client(QTcpSocket* client);
     QTcpServer* tcpServer_;
-    std::list<QTcpSocket*> clientsSockets_;
-
     std::list<ClientInfo> lClientInfo_;
     QMap<QTcpSocket*, Message> socketBuffer_;
     QMap<QTcpSocket*, uint> clientId_;
 
     void makeJSONanswer2client(QTcpSocket* client, QString message) const;
-
-    void readJSONdoc(const QJsonDocument& doc );
-    void readMessage(QByteArray data, int size);
 
     uint idCounter = 0;
 

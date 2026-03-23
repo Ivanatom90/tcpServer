@@ -5,7 +5,7 @@ QT += widgets
 CONFIG += c++17
 CONFIG += console
 
-DESTDIR = &&PWD/../build
+#DESTDIR = &&PWD/../build
 #CONFIG -= app_bundle
 
 # You can make your code fail to compile if it uses deprecated APIs.

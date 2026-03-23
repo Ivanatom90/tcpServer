@@ -21,6 +21,7 @@ void TcpServer::startServer(int port){
 
 void TcpServer::startServer(){
     startServer(12345);
+    qDebug()<<"Server Thread = "<<QThread::currentThreadId();
 }
 
 void TcpServer::newSocketConnection(){
@@ -37,8 +38,6 @@ void TcpServer::newSocketConnection(){
         qDebug()<<"New connection esteblisheed";
         debug_<<"New connection esteblisheed"<<" address = " + clientSocket->peerAddress().toString() << " port = " + QString::number(clientSocket->peerPort());
     }
-    qDebug()<<"Server Thread = "<<QThread::currentThreadId();
-
 }
 
 void TcpServer::onReadyRead(){
@@ -127,17 +126,6 @@ void TcpServer::onDisconnected(){
 
 }
 
-void TcpServer::readJSONdoc(const QJsonDocument& doc ){
-    if(!doc.isObject()) return;
-    QJsonObject jobj = doc.object();
-    QString type = jobj["type"].toString();
-    qDebug()<<type;
-}
-
-void TcpServer::readMessage(QByteArray data, int size){
-    QJsonDocument bufDoc = QJsonDocument::fromJson(data);
-    readJSONdoc(bufDoc);
-}
 
 void TcpServer::makeJSONanswer2client(QTcpSocket* client, QString message) const{
     QJsonObject jobj;
